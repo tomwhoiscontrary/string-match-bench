@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+    id "me.champeau.gradle.jmh" version "0.4.8"
+}
+
+repositories {
+    jcenter()
+}
+
+jmh {
+    benchmarkMode = ['avgt']
+    timeUnit = 'ns'
+    fork = 1
+    warmupIterations = 2
+    warmup = '1s'
+    iterations = 20
+    timeOnIteration = '1s'
+    threads = 4
+}

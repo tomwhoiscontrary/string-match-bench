@@ -1,0 +1,11 @@
+/.gradle/
+
+/build/
+
+/.idea/
+/.settings/
+/bin/
+
+# where did these spring from?!
+/.project
+/.classpath

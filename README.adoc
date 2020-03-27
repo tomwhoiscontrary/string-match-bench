@@ -1,0 +1,28 @@
+Benchmarks to compare various ways of selecting strings from a set.
+
+The elementary ways are testing if a string has a particular prefix, and testing if it is in a particular set.
+
+The alternatives use regular expressions to make the same tests. Regular expressions turn out to be quite a bit slower, and their speed depends heavily on some trivial detail of the expression!
+
+To run the benchmarks, do:
+
+....
+./gradlew --no-daemon clean jmh
+....
+
+The first run will take a while because it will download the universe. After that should be reasonably quick.
+
+Disable the daemon because it caches some wrong stuff and breaks if you change the benchmark code.
+
+One run of the benchmarks gave results like this:
+
+|===
+| Benchmark                 |  Score (ns/op) | Error (ns/op)
+| nothing                   |          6.475 |         0.588
+| prefix                    |         14.877 |         1.130
+| prefixPattern             |        181.316 |        18.782
+| set                       |         14.011 |         1.415
+| setPatternMinimal         |        467.407 |        36.123
+| setPatternSorted          |       1511.263 |       155.307
+| setPattern                |       1586.486 |       104.251
+|===
